@@ -17,3 +17,5 @@
     6.2 Add WebDriver
 
 7. Run again
+
+8. Record tests
