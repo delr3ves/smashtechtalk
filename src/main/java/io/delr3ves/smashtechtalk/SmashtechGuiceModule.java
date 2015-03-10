@@ -8,6 +8,7 @@ import io.delr3ves.smashtechtalk.services.UserService;
 import io.delr3ves.smashtechtalk.services.UserServiceWebdriverImpl;
 import io.delr3ves.smashtechtalk.state.SuiteState;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.http.HttpClient;
@@ -40,7 +41,14 @@ public class SmashtechGuiceModule extends AbstractModule {
     @Provides
     @Singleton
     WebDriver getDefaultWebDriver() {
-        WebDriver driver = new FirefoxDriver();
+        WebDriver driver;
+        if (config.getBrowser().equals(SmashtechConfig.CHROME)) {
+            System.setProperty("webdriver.chrome.driver", config.getPathToChromeDriver());
+            driver = new ChromeDriver();
+        } else {
+            driver = new FirefoxDriver();
+        }
+
         driver.manage().timeouts().implicitlyWait(
                 config.getDefaultTimeToWaitInSeconds(), TimeUnit.SECONDS);
         driver.manage().window().maximize();

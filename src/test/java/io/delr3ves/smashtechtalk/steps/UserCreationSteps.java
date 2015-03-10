@@ -1,6 +1,7 @@
 package io.delr3ves.smashtechtalk.steps;
 
 import cucumber.api.Scenario;
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -44,8 +45,8 @@ public class UserCreationSteps {
         scenario = currentScenario;
     }
 
-    @When("^user cretates an user with \"(.*?)\"$")
-    public void userCretatesAnUserWith(String userDescription) throws Throwable {
+    @When("^user creates an user with \"(.*?)\"$")
+    public void userCreatesAnUserWith(String userDescription) throws Throwable {
         ScenarioState state = suiteState.stateFor(scenario.getId());
         User user = userBuilder.createUserByDescription(userDescription);
         User createdUser = userService.register(user);

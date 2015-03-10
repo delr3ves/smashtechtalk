@@ -28,7 +28,7 @@ public class RecorderHooks {
     private WebDriver driver;
 
     @Before("@recorded")
-    public void startRecorder(Scenario scenario) {
+    public void startRecorder() {
         recorderService.startRecording();
     }
 
@@ -38,12 +38,16 @@ public class RecorderHooks {
             Thread.sleep(1000);
             String file = recorderService.stopRecording(UUID.randomUUID().toString());
 
-            TakesScreenshot screenshot = (TakesScreenshot) driver;
-            byte[] image = screenshot.getScreenshotAs(OutputType.BYTES);
-            scenario.embed(image, "image/png");
+            try {
+                TakesScreenshot screenshot = (TakesScreenshot) driver;
+                byte[] image = screenshot.getScreenshotAs(OutputType.BYTES);
+                scenario.embed(image, "image/png");
+            } catch (Throwable e) {
+                //the browser has no ability to take an screenshot
+            }
 
             Path path = Paths.get(config.getBaseVideoPath() + file);
-            scenario.write("</pre><p><a href=\""+ path +"\">See the execution video here</a></p><pre>");
+            scenario.write("</pre><p><a href=\"" + path + "\">See the execution video here</a></p><pre>");
         } else {
             recorderService.rejectRecording();
         }

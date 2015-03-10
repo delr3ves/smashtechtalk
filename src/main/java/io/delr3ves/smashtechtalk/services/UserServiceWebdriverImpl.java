@@ -69,10 +69,4 @@ public class UserServiceWebdriverImpl implements UserService {
         return user;
     }
 
-    public void login(User user) {
-    }
-
-    public void logout(User user) {
-        driver.findElement(By.linkText("Log out")).click();
-    }
 }

@@ -3,7 +3,6 @@ package io.delr3ves.smashtechtalk.steps;
 import cucumber.api.java.en.Given;
 import io.delr3ves.smashtechtalk.SmashtechConfig;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -30,6 +29,6 @@ public class NavigationSteps {
             closeButons.get(0).click();
         }
         driver.findElement(By.id("userZoneTitle")).click();
-        driver.findElement(By.linkText("¡Regístrate ahora!")).click();
+        driver.findElement(By.className("app-sign-in-link")).click();
     }
 }

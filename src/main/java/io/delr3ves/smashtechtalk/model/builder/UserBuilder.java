@@ -32,7 +32,7 @@ public class UserBuilder {
         user.setName(RandomStringUtils.randomAlphabetic(numericRandom.nextInt(10) + 3));
         user.setSurname(RandomStringUtils.randomAlphabetic(numericRandom.nextInt(10) + 3));
         user.setEmail(RandomStringUtils.randomAlphanumeric(numericRandom.nextInt(10) + 1) + "@irrelevantemail.com");
-        user.setGenre(User.Genre.FEMALE);
+        user.setGenre(User.Genre.map(numericRandom.nextInt(1)));
         user.setReceiveOffers(false);
         user.setPassword(RandomStringUtils.randomAscii(numericRandom.nextInt(10) + 6));
         user.setRegion("Alicante");

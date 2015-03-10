@@ -8,11 +8,17 @@ import lombok.Data;
 @Data
 public class SmashtechConfig {
 
+    public static final String FIREFOX = "firefox";
+    public static final String CHROME = "chrome";
+
     private String baseUrl = "https://www.atrapalo.com/";
     private String recorderUrl = "http://localhost:9998";
     private String webdriverUrl = "http://localhost";
-    private Integer defaultTimeToWaitInSeconds = 10;
+    private Integer defaultTimeToWaitInSeconds = 2;
 
     private Boolean recordOnlyOnFailure = false;
     private String baseVideoPath = "/Users/serch/Desktop/tmp/";
+
+    private String browser = CHROME;
+    private String pathToChromeDriver = "/Users/serch/apps/chromeDriver";
 }

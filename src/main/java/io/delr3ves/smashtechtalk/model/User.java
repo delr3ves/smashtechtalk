@@ -3,21 +3,36 @@ package io.delr3ves.smashtechtalk.model;
 import lombok.Data;
 import org.joda.time.DateTime;
 
-import java.util.Date;
-
 /**
  * @author Sergio Arroyo - @delr3ves
  */
 @Data
 public class User {
-    public enum Genre {MALE, FEMALE}
+    public enum Genre {
+        MALE(0), FEMALE(1);
 
-    private String name;
-    private String surname;
+        public final int id;
+
+        Genre(int id) {
+            this.id = id;
+        }
+
+        public static Genre map(Integer pos) {
+            for (Genre genre : Genre.values()) {
+                if (pos.equals(genre.id)) {
+                    return genre;
+                }
+            }
+            return null;
+        }
+    }
+
+    private String name = "";
+    private String surname = "";
     private Genre genre;
-    private String email;
+    private String email = "";
     private Boolean receiveOffers = false;
-    private String password;
+    private String password = "";
     private String region;
     private DateTime birthday;
 
